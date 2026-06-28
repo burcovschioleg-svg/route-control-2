@@ -29,11 +29,14 @@ lib/
 2. Потом: `countries/poland/systems/etoll/` — баланс с нуля
 3. Firebase / Google — те же ключи, что у v1 (отдельно в консолях)
 
-## История чатов (другой ПК / новый агент)
+## История чатов (синхрон между ПК)
 
-- **`docs/CHAT_HISTORY.md`** — полная история проекта **с нуля** (структурированно, ~5 мин чтения).
-- **`docs/PROJECT_CONTEXT.md`** — краткая шпаргалка для агента.
-- Обновлять историю вручную после крупных этапов; дату: `scripts/export-chat-history.ps1`
+- **`docs/CHAT_HISTORY.md`** — смысл проекта.
+- **`docs/cursor-sessions/`** — полные чаты (`.md` читать глазами, агент читает всё).
+- **`docs/CURSOR_CHATS_SYNC.md`** — инструкция ПК ↔ Git.
+
+Конец дня: `scripts/sync-chats.ps1` → `git push`.  
+Другой ПК: `git pull` → `scripts/sync-chats.ps1`.
 
 ## Запуск
 

@@ -1,6 +1,14 @@
 # Route Control v2 — контекст для агента
 
-> Полная история: **`docs/CHAT_HISTORY.md`** (читать в первую очередь).
+## Контекст для агента
+
+| Файл | Зачем |
+|------|--------|
+| `docs/CHAT_HISTORY.md` | Смысл проекта с нуля |
+| `docs/cursor-sessions/*.md` | Полные чаты (читать / для агента) |
+| `docs/CURSOR_CHATS_SYNC.md` | Как синхронить ПК ↔ Git |
+
+Синхрон чатов: `scripts/sync-chats.ps1`
 
 **Oleg** — не программист. **Активный проект:** `route_control_2`.  
 **Архив:** `route_control` (v1, не разрабатывать без просьбы).
@@ -33,4 +41,9 @@ login → firm → financing/list → top-up 20 PLN → PayByNet → Dalej → g
 git clone https://github.com/burcovschioleg-svg/route-control-2.git
 ```
 
-В чате: «Прочитай docs/CHAT_HISTORY.md — продолжай v2».
+В чате: «Прочитай docs/CHAT_HISTORY.md и docs/cursor-sessions/ — продолжай v2».
+
+```powershell
+git pull
+powershell -File scripts/sync-chats.ps1
+```

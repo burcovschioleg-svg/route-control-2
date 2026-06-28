@@ -1,15 +1,18 @@
 ---
-description: На старте чата читать контекст проекта и историю
+description: Контекст и синхронизированные чаты Cursor
 alwaysApply: true
 ---
 
-# Контекст Route Control v2
+# Route Control v2 — контекст
 
-Пользователь — Oleg. Активный проект: `route_control_2`.
+Пользователь — Oleg. Проект: `route_control_2`.
 
 Перед большими задачами прочитай:
 
-1. `docs/CHAT_HISTORY.md` — **главный файл**, история проекта с нуля.
-2. `docs/PROJECT_CONTEXT.md` — краткая шпаргалка.
+1. `docs/CHAT_HISTORY.md` — история и смысл проекта.
+2. `docs/cursor-sessions/` — полные чаты с другого ПК (файлы `.md`, особенно крупная сессия `faca3992-...`).
+3. `docs/CURSOR_CHATS_SYNC.md` — как устроена синхронизация.
 
-v1 (`route_control`) — архив, не разрабатывать без явной просьбы.
+v1 (`route_control`) — архив, не трогать без просьбы.
+
+Конец сессии: предложи Oleg запустить `scripts/sync-chats.ps1` и `git push`.

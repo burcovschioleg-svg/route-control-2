@@ -154,8 +154,14 @@ login → firm → financing/list → top-up 20 PLN → PayByNet → Dalej → g
 
 ### История чатов на Git
 
-- Этот файл — **единственный источник контекста** для другого ПК.
-- Не искать старые бэкапы на `E:\`, Dropbox и т.д. — всё актуальное здесь и в Git.
+- **`docs/CHAT_HISTORY.md`** — смысл проекта с нуля (главное для агента).
+- **`docs/cursor-sessions/`** — **полные чаты** Cursor (jsonl + md), синхрон между ПК.
+- Инструкция: **`docs/CURSOR_CHATS_SYNC.md`**.
+
+Конец дня на ПК: `scripts/sync-chats.ps1` → `git push`.  
+На другом ПК: `git pull` → `scripts/sync-chats.ps1` → перезапуск Cursor.
+
+Список чатов **справа** в Cursor может не восстановиться (ограничение программы), но **агент читает файлы** в `cursor-sessions/`.
 
 ---
 
