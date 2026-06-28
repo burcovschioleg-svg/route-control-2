@@ -31,9 +31,9 @@ lib/
 
 ## История чатов (другой ПК / новый агент)
 
-- **Контекст:** `docs/PROJECT_CONTEXT.md` — кратко, с чего начать.
-- **Полный лог:** `docs/CHAT_HISTORY.md` (~1 MB, все сессии Cursor).
-- Обновить: `powershell -File scripts/export-chat-history.ps1`
+- **`docs/CHAT_HISTORY.md`** — полная история проекта **с нуля** (структурированно, ~5 мин чтения).
+- **`docs/PROJECT_CONTEXT.md`** — краткая шпаргалка для агента.
+- Обновлять историю вручную после крупных этапов; дату: `scripts/export-chat-history.ps1`
 
 ## Запуск
 
