@@ -59,15 +59,22 @@ function Copy-SessionToCursor([string]$Id, [string]$SourcePath) {
     Copy-Item -LiteralPath $SourcePath -Destination $dest -Force
 }
 
+function Clean-ChatText([string]$Text) {
+    $t = $Text
+    $t = $t -replace '(?s)\[Image\].*?</image_files>\s*', ''
+    $t = $t -replace '(?s)<image_files>.*?</image_files>\s*', ''
+    $t = $t -replace '<timestamp>[^<]*</timestamp>\s*', ''
+    if ($t -match '<user_query>\s*([\s\S]*?)\s*</user_query>') { $t = $Matches[1] }
+    $t = $t -replace '\[REDACTED\]', ''
+    return $t.Trim()
+}
+
 function Get-MessageText([object]$Entry) {
     if (-not $Entry.message.content) { return $null }
     $parts = @()
     foreach ($c in @($Entry.message.content)) {
         if ($c.type -eq 'text' -and $c.text) {
-            $t = [string]$c.text
-            if ($t -match '<user_query>\s*([\s\S]*?)\s*</user_query>') { $t = $Matches[1] }
-            $t = $t -replace '\[REDACTED\]', ''
-            $t = $t.Trim()
+            $t = Clean-ChatText ([string]$c.text)
             if ($t.Length -gt 0) { $parts += $t }
         }
     }
@@ -96,6 +103,52 @@ function Write-ReadableMarkdown([string]$JsonlPath, [string]$Id) {
         [void]$sb.AppendLine('')
     }
     [System.IO.File]::WriteAllText($mdPath, $sb.ToString(), [System.Text.UTF8Encoding]::new($false))
+}
+
+function Write-AllChatsSingleFile([string]$ProjectRoot, [string]$SessionsDir) {
+    $outTxt = Join-Path $ProjectRoot 'docs\ALL_CHATS.txt'
+    $outMd = Join-Path $ProjectRoot 'docs\ALL_CHATS.md'
+    $sb = New-Object System.Text.StringBuilder
+    [void]$sb.AppendLine('ROUTE CONTROL - FULL CURSOR CHAT TEXT')
+    [void]$sb.AppendLine("Built: $(Get-Date -Format 'yyyy-MM-dd HH:mm')")
+    [void]$sb.AppendLine('')
+    [void]$sb.AppendLine('Other PC: open this file in Cursor or paste into new chat.')
+    [void]$sb.AppendLine('Say: read ALL_CHATS.txt and CHAT_HISTORY.md - continue v2')
+    [void]$sb.AppendLine('')
+    [void]$sb.AppendLine('================================================================================')
+    [void]$sb.AppendLine('')
+
+    $msgTotal = 0
+    $files = Get-ChildItem -Path $SessionsDir -Filter '*.jsonl' | Sort-Object LastWriteTime
+    foreach ($f in $files) {
+        if ($f.Length -eq 0) { continue }
+        $id = Get-SessionIdFromPath $f.FullName
+        [void]$sb.AppendLine("########## SESSION $id ##########")
+        [void]$sb.AppendLine("File date: $($f.LastWriteTime.ToString('yyyy-MM-dd HH:mm'))")
+        [void]$sb.AppendLine('')
+
+        foreach ($line in Get-Content -LiteralPath $f.FullName -Encoding UTF8) {
+            if ([string]::IsNullOrWhiteSpace($line)) { continue }
+            try { $entry = $line | ConvertFrom-Json } catch { continue }
+            $text = Get-MessageText $entry
+            if (-not $text) { continue }
+            $msgTotal++
+            $role = if ($entry.role -eq 'user') { '--- OLEG ---' } else { '--- AGENT ---' }
+            [void]$sb.AppendLine($role)
+            [void]$sb.AppendLine($text)
+            [void]$sb.AppendLine('')
+            [void]$sb.AppendLine('--------------------------------------------------------------------------------')
+            [void]$sb.AppendLine('')
+        }
+        [void]$sb.AppendLine('')
+    }
+
+    $content = $sb.ToString()
+    $enc = [System.Text.UTF8Encoding]::new($false)
+    [System.IO.File]::WriteAllText($outTxt, $content, $enc)
+    [System.IO.File]::WriteAllText($outMd, $content, $enc)
+    $sizeKB = [math]::Round((Get-Item $outTxt).Length / 1KB, 1)
+    Write-Host "ALL_CHATS: $outTxt ($sizeKB KB, $msgTotal messages)"
 }
 
 $doPush = $Push -or (-not $Push -and -not $Pull)
@@ -155,6 +208,8 @@ foreach ($id in $allIds) {
 }
 
 $manifest | ConvertTo-Json -Depth 4 | Set-Content -LiteralPath $manifestPath -Encoding UTF8
+
+Write-AllChatsSingleFile $projectRoot $gitSessions
 
 Write-Host "sync-chats OK: pushed=$pushed pulled=$pulled sessions=$($allIds.Count)"
 Write-Host "git folder: $gitSessions"

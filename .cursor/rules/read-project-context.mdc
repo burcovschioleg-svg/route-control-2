@@ -9,9 +9,8 @@ alwaysApply: true
 
 Перед большими задачами прочитай:
 
-1. `docs/CHAT_HISTORY.md` — история и смысл проекта.
-2. `docs/cursor-sessions/` — полные чаты с другого ПК (файлы `.md`, особенно крупная сессия `faca3992-...`).
-3. `docs/CURSOR_CHATS_SYNC.md` — как устроена синхронизация.
+1. `docs/ALL_CHATS.txt` — **весь текст чатов** (главный файл).
+2. `docs/CHAT_HISTORY.md` — смысл проекта.
 
 v1 (`route_control`) — архив, не трогать без просьбы.
 

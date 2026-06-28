@@ -31,12 +31,12 @@ lib/
 
 ## История чатов (синхрон между ПК)
 
-- **`docs/CHAT_HISTORY.md`** — смысл проекта.
-- **`docs/cursor-sessions/`** — полные чаты (`.md` читать глазами, агент читает всё).
-- **`docs/CURSOR_CHATS_SYNC.md`** — инструкция ПК ↔ Git.
+- **`docs/ALL_CHATS.txt`** — **весь текст всех чатов в одном файле** (~1.2 MB)
+- **`docs/CHAT_HISTORY.md`** — краткий смысл проекта
+- **`docs/CURSOR_CHATS_SYNC.md`** — инструкция
 
-Конец дня: `scripts/sync-chats.ps1` → `git push`.  
-Другой ПК: `git pull` → `scripts/sync-chats.ps1`.
+Конец дня: `scripts/sync-chats.ps1` → `git push`  
+Другой ПК: `git pull` → открыть `ALL_CHATS.txt` → в чате: «Прочитай ALL_CHATS.txt»
 
 ## Запуск
 

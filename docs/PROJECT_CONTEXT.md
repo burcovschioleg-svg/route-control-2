@@ -5,7 +5,7 @@
 | Файл | Зачем |
 |------|--------|
 | `docs/CHAT_HISTORY.md` | Смысл проекта с нуля |
-| `docs/cursor-sessions/*.md` | Полные чаты (читать / для агента) |
+| `docs/ALL_CHATS.txt` | **Весь текст чатов** — главный для копирования |
 | `docs/CURSOR_CHATS_SYNC.md` | Как синхронить ПК ↔ Git |
 
 Синхрон чатов: `scripts/sync-chats.ps1`
