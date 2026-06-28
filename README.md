@@ -29,6 +29,12 @@ lib/
 2. Потом: `countries/poland/systems/etoll/` — баланс с нуля
 3. Firebase / Google — те же ключи, что у v1 (отдельно в консолях)
 
+## История чатов (другой ПК / новый агент)
+
+- **Контекст:** `docs/PROJECT_CONTEXT.md` — кратко, с чего начать.
+- **Полный лог:** `docs/CHAT_HISTORY.md` (~1 MB, все сессии Cursor).
+- Обновить: `powershell -File scripts/export-chat-history.ps1`
+
 ## Запуск
 
 ```powershell
