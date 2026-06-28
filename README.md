@@ -14,7 +14,6 @@
 lib/
   main.dart              ← только runApp
   app.dart               ← тема, MaterialApp
-  router.dart            ← маршруты
   blocks/
     shell/               ← ОБОЛОЧКА (главная, drawer, top bar)
     core/                ← профиль, языки, registry стран
@@ -43,9 +42,6 @@ flutter run
 
 ```powershell
 cd C:\projects\route_control_2
-git init
-git add .
-git commit -m "Initial shell: countries registry and home"
 git remote add origin https://github.com/burcovschioleg-svg/route-control-2.git
 git push -u origin main
 ```
