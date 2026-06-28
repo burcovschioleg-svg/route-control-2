@@ -1,0 +1,12 @@
+---
+description: route_control_2 — main.dart только запуск, логика в blocks/
+globs: lib/main.dart
+alwaysApply: true
+---
+
+# route_control_2: тонкий main
+
+- `lib/main.dart` — только `main()` и `runApp`. Не добавлять экраны и бизнес-логику.
+- Новый код — в `lib/blocks/` под оболочкой `shell/`.
+- eTOLL / баланс — только `blocks/countries/poland/systems/etoll/`.
+- v1 (`route_control`) — архив, не копировать main.dart оттуда.
