@@ -5,7 +5,7 @@
 | | v1 (архив) | v2 (здесь) |
 |---|------------|------------|
 | Путь | `C:\projects\route_control` | `C:\projects\route_control_2` |
-| Git | `route-control` → ветка `archive/v1-legacy` | новый репо (создать на GitHub) |
+| Git | `route-control` → ветка `archive/v1-legacy` | [route-control-2](https://github.com/burcovschioleg-svg/route-control-2) |
 | main.dart | ~18k строк | ~30 строк |
 
 ## Структура
@@ -38,10 +38,4 @@ flutter run
 
 ## GitHub
 
-`gh` на машине нет — создайте репозиторий вручную, например `route-control-2`, затем:
-
-```powershell
-cd C:\projects\route_control_2
-git remote add origin https://github.com/burcovschioleg-svg/route-control-2.git
-git push -u origin main
-```
+https://github.com/burcovschioleg-svg/route-control-2
